@@ -1,5 +1,7 @@
 import Head from 'next/head'
 
+import globalStyles from 'styles/global'
+
 function App({ Component, pageProps }) {
   return (
     <>
@@ -14,6 +16,7 @@ function App({ Component, pageProps }) {
           content="A simple project starter to work with React, NextJS and Stitches"
         />
       </Head>
+      {globalStyles()}
       <Component {...pageProps} />
     </>
   )
