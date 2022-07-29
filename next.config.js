@@ -4,7 +4,10 @@ const withPWA = require('next-pwa')
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true
+  reactStrictMode: true,
+  images: {
+    domains: ['assets.pokemon.com']
+  }
 }
 
 // eslint-disable-next-line no-undef
@@ -16,5 +19,8 @@ module.exports = withPWA({
   pwa: {
     dest: 'public',
     disable: !isProd
+  },
+  images: {
+    domains: ['assets.pokemon.com']
   }
 })
