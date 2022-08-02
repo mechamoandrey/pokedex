@@ -1,10 +1,9 @@
-import Image from 'next/image'
+import * as S from './styles'
 
-const PokemonCard = ({ name, id }) => {
+const PokemonCard = ({ name, id, trigger }) => {
   return (
-    <div>
-      <span>{('000' + id).slice(-3)}</span>
-      <Image
+    <div data-trigger={trigger}>
+      <S.Img
         alt={name}
         width={150}
         height={150}
@@ -12,7 +11,10 @@ const PokemonCard = ({ name, id }) => {
           '000' + id
         ).slice(-3)}.png`}
       />
-      <h2>{name}</h2>
+
+      {/* <S.Button>{('000' + id).slice(-3)}</S.Button> */}
+
+      <S.PokeName>{name}</S.PokeName>
     </div>
   )
 }
