@@ -1,28 +1,10 @@
-/* eslint-disable no-undef */
 import PokemonCard from 'components/PokemonCard'
+import { useLoadPokemons } from 'hooks/useLoadPokemons'
 import { useEffect } from 'react'
-import { useState } from 'react'
+import { formatIdPokemon } from 'utils/formatIdPokemon'
 
 export default function Home({ pokemonList }) {
-  const [pokemons, setPokemons] = useState(pokemonList.results)
-  const [apiEndpoint, setApiEndpoint] = useState(
-    `${process.env.NEXT_PUBLIC_POKEMON_API}?offset=21&limit=10`
-  )
-
-  const loadPokemons = () => {
-    const observer = new IntersectionObserver((entries) => {
-      if (entries.some((entry) => entry.isIntersecting)) {
-        fetch(apiEndpoint).then(async (res) => {
-          let { results, next } = await res.json()
-          setApiEndpoint(next)
-          setPokemons((prevPokemons) => [...prevPokemons, ...results])
-          observer.disconnect()
-        })
-      }
-    })
-
-    observer.observe(document.querySelector('[data-trigger="true"]'))
-  }
+  const { pokemons, loadPokemons } = useLoadPokemons(pokemonList.results)
 
   useEffect(() => {
     loadPokemons()
@@ -32,12 +14,14 @@ export default function Home({ pokemonList }) {
     <ul>
       {pokemons.map(({ name }, index) => {
         const triggerInfiniteLoad = index === pokemons.length - 4
+        const { formattedId } = formatIdPokemon(index + 1)
+
         return (
           <PokemonCard
             trigger={triggerInfiniteLoad}
             key={index}
             name={name}
-            id={index + 1}
+            id={formattedId}
           />
         )
       })}
@@ -47,7 +31,7 @@ export default function Home({ pokemonList }) {
 
 export async function getServerSideProps() {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_POKEMON_API}?offset=0&limit=20`
+    `${process.env.NEXT_PUBLIC_POKEMON_API}pokemon/?offset=0&limit=20`
   )
   const pokemonList = await res.json()
 

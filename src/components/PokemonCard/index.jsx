@@ -1,21 +1,24 @@
+import Link from 'next/link'
+
+import { getPokemonImage } from 'utils/getPokemonImage'
+
 import * as S from './styles'
 
 const PokemonCard = ({ name, id, trigger }) => {
+  const { pokemonImage } = getPokemonImage(id)
+
   return (
-    <div data-trigger={trigger}>
-      <S.Img
-        alt={name}
-        width={150}
-        height={150}
-        src={`https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${(
-          '000' + id
-        ).slice(-3)}.png`}
-      />
+    <li data-trigger={trigger}>
+      <Link href={`/pokemon/${name}`}>
+        <a>
+          <S.Img alt={name} width={150} height={150} src={pokemonImage} />
 
-      {/* <S.Button>{('000' + id).slice(-3)}</S.Button> */}
+          <span>{id}</span>
 
-      <S.PokeName>{name}</S.PokeName>
-    </div>
+          <S.PokeName>{name}</S.PokeName>
+        </a>
+      </Link>
+    </li>
   )
 }
 
