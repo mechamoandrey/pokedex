@@ -7,7 +7,8 @@ const nextConfig = {
   reactStrictMode: true,
   images: {
     domains: ['assets.pokemon.com']
-  }
+  },
+  target: 'serverless'
 }
 
 // eslint-disable-next-line no-undef
@@ -22,5 +23,6 @@ module.exports = withPWA({
   },
   images: {
     domains: ['assets.pokemon.com']
-  }
+  },
+  target: 'serverless'
 })
