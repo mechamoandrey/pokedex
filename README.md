@@ -1,12 +1,11 @@
-This is a [Next.js](https://nextjs.org/) boilerplate.
+This is a study project I'm doing to study some technologies and refine the way I write my code.
 
 ## What is inside?
 
 This project uses lot of stuff as:
 
 - [NextJS](https://nextjs.org/)
-- [Styled Components](https://styled-components.com/)
-- [Storybook](https://storybook.js.org/)
+- [Stitches](https://stitches.dev/)
 - [Eslint](https://eslint.org/)
 - [Prettier](https://prettier.io/)
 - [Husky](https://github.com/typicode/husky)
@@ -31,8 +30,6 @@ You can start editing the page by modifying `pages/index.js`. The page auto-upda
 - `build`: creates the production build version
 - `start`: starts a simple server with the build production code
 - `lint`: runs the linter in all components and pages
-- `storybook`: runs storybook on `localhost:6006`
-- `build-storybook`: create the build version of storybook
 - `generate`: creates components based on template from ./generators folder
 
 ## Learn More
