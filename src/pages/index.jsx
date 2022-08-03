@@ -1,14 +1,12 @@
 import PokemonCard from 'components/PokemonCard'
 import { useLoadPokemons } from 'hooks/useLoadPokemons'
-import { useEffect } from 'react'
 import { formatIdPokemon } from 'utils/formatIdPokemon'
 
 export default function Home({ pokemonList }) {
-  const { pokemons, loadPokemons } = useLoadPokemons(pokemonList.results)
-
-  useEffect(() => {
-    loadPokemons()
-  }, [pokemons])
+  const { pokemons } = useLoadPokemons(
+    pokemonList.results,
+    '[data-trigger="true"]'
+  )
 
   return (
     <ul>

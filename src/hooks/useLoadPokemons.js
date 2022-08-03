@@ -1,7 +1,7 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import isClient from 'utils/isClient'
 
-export const useLoadPokemons = (listPokemons) => {
+export const useLoadPokemons = (listPokemons, target) => {
   const [pokemons, setPokemons] = useState(listPokemons)
 
   const [apiEndpoint, setApiEndpoint] = useState(
@@ -9,8 +9,10 @@ export const useLoadPokemons = (listPokemons) => {
   )
 
   const loadPokemons = () => {
+    console.log('loadpokemon')
     const observer = new IntersectionObserver((entries) => {
       if (entries.some((entry) => entry.isIntersecting)) {
+        console.log('ifzao')
         fetch(apiEndpoint)
           .then(async (res) => {
             const { results, next } = await res.json()
@@ -24,10 +26,12 @@ export const useLoadPokemons = (listPokemons) => {
       }
     })
 
-    observer.observe(
-      isClient() && document.querySelector('[data-trigger="true"]')
-    )
+    observer.observe(isClient() && document.querySelector(`${target}`))
   }
 
-  return { pokemons, loadPokemons }
+  useEffect(() => {
+    loadPokemons()
+  }, [pokemons])
+
+  return { pokemons }
 }
