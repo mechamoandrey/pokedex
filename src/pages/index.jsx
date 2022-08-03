@@ -1,6 +1,5 @@
 import PokemonCard from 'components/PokemonCard'
 import { useLoadPokemons } from 'hooks/useLoadPokemons'
-import { formatIdPokemon } from 'utils/formatIdPokemon'
 
 export default function Home({ pokemonList }) {
   const { pokemons } = useLoadPokemons(
@@ -13,14 +12,13 @@ export default function Home({ pokemonList }) {
       <h1>Pokedex Test</h1>
       {pokemons.map(({ name }, index) => {
         const triggerInfiniteLoad = index === pokemons.length - 4
-        const { formattedId } = formatIdPokemon(index + 1)
 
         return (
           <PokemonCard
             trigger={triggerInfiniteLoad}
             key={index}
             name={name}
-            id={formattedId}
+            id={index + 1}
           />
         )
       })}
