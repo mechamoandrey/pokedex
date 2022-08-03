@@ -12,6 +12,7 @@ export default function Home({ pokemonList }) {
 
   return (
     <ul>
+      <h1>Pokedex Test</h1>
       {pokemons.map(({ name }, index) => {
         const triggerInfiniteLoad = index === pokemons.length - 4
         const { formattedId } = formatIdPokemon(index + 1)
