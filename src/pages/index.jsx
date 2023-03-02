@@ -1,4 +1,4 @@
-import Container from 'components/Container'
+// import Container from 'components/Container'
 import PokemonCard from 'components/PokemonCard'
 import { useLoadPokemons } from 'hooks/useLoadPokemons'
 
@@ -9,7 +9,8 @@ export default function Home({ pokemonList }) {
   )
 
   return (
-    <Container>
+    <>
+      {/* // <Container> */}
       <a href="https://04ae-179-99-119-69.sa.ngrok.io/teste" rel="noreferrer">
         BOTAO
       </a>
@@ -29,7 +30,8 @@ export default function Home({ pokemonList }) {
           )
         })}
       </ul>
-    </Container>
+      {/* // </Container> */}
+    </>
   )
 }
 
