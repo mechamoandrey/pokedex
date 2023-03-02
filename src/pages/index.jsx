@@ -1,3 +1,4 @@
+import Container from 'components/Container'
 import PokemonCard from 'components/PokemonCard'
 import { useLoadPokemons } from 'hooks/useLoadPokemons'
 
@@ -8,21 +9,27 @@ export default function Home({ pokemonList }) {
   )
 
   return (
-    <ul>
-      <h1>Pokedex Test</h1>
-      {pokemons.map(({ name }, index) => {
-        const triggerInfiniteLoad = index === pokemons.length - 4
+    <Container>
+      <a href="https://04ae-179-99-119-69.sa.ngrok.io/teste" rel="noreferrer">
+        BOTAO
+      </a>
 
-        return (
-          <PokemonCard
-            trigger={triggerInfiniteLoad}
-            key={index}
-            name={name}
-            id={index + 1}
-          />
-        )
-      })}
-    </ul>
+      <ul>
+        <h1>Pokedex Test</h1>
+        {pokemons.map(({ name }, index) => {
+          const triggerInfiniteLoad = index === pokemons.length - 4
+
+          return (
+            <PokemonCard
+              trigger={triggerInfiniteLoad}
+              key={index}
+              name={name}
+              id={index + 1}
+            />
+          )
+        })}
+      </ul>
+    </Container>
   )
 }
 
